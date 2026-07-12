@@ -79,6 +79,14 @@
     };
   };
 
+  programs.git = {
+    enable = true;
+    settings.user = {
+      name = "sma918";
+      email = "sam.baxter918@gmail.com";
+    };
+  };
+
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 }
