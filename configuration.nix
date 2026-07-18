@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, lib, system, ... }:
 
 {
   imports =
@@ -24,7 +24,10 @@
   boot.kernelPackages = pkgs.linuxPackages_6_12;
 
   networking.hostName = "nixos";
-  # networking.wireless.enable = true;
+
+ #musnix.enable = true;
+ #musnix.kernel.realtime = true;
+ #musnix.rtirq.enable = true;
 
   # Enable networking
   networking.networkmanager.enable = true;
@@ -52,8 +55,12 @@
   users.defaultUserShell = pkgs.zsh;
   programs.zsh.enable = true;
 
-  environment.sessionVariables = {
-    LV2_PATH = "${pkgs.neural-amp-modeler-lv2}/lib/lv2";
+  environment.pathsToLink = [
+    "/lib/lv2"
+  ];
+
+  environment.variables= {
+    LV2_PATH = "/run/current-system/sw/lib/lv2";
   };
 
   services.xserver.enable = true;
@@ -77,8 +84,6 @@
     alsa.enable = true;
     alsa.support32Bit = true;
     pulse.enable = true;
-
-    # If you want to use JACK applications, uncomment this
     jack.enable = true;
   };
 
@@ -96,7 +101,6 @@
     extraGroups = [ "networkmanager" "wheel" ];
     packages = with pkgs; [
       kdePackages.kate
-      neural-amp-modeler-lv2
       spotify
     ];
   };
@@ -110,6 +114,7 @@
       kdePackages.breeze
       ];
   };
+  programs.mango.enable = true;
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
@@ -118,14 +123,23 @@
   environment.systemPackages = with pkgs; [
   fastfetch
   git
+  guitarix
   kitty
   librewolf
   neovim
+  nerd-fonts.hack
+  neural-amp-modeler-lv2
   prismlauncher
+  proton-vpn
+  qjackctl
   reaper
   tor-browser
   vim
   wget
+  ];
+
+  fonts.packages = with pkgs; [
+    nerd-fonts.jetbrains-mono
   ];
 
   # Some programs need SUID wrappers, can be configured further or are

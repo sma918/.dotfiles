@@ -3,11 +3,15 @@
   description = "My first flake";
 
   inputs = {
-    nixpkgs.url = "nixpkgs/nixos-26.05";
-    home-manager.url = "github:nix-community/home-manager/release-26.05";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+    home-manager.url = "github:nix-community/home-manager";
+    mangowm = {
+      url = "github:mangowm/mango";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = { self, nixpkgs, home-manager, ... }:
+  outputs = { self, nixpkgs, home-manager, mangowm, ... }:
     let
       lib = nixpkgs.lib;
       system = "x86_64-linux";
@@ -16,7 +20,10 @@
     nixosConfigurations = {
       nixos = lib.nixosSystem {
         inherit system;
-	modules = [ ./configuration.nix ];
+	modules = [
+	  ./configuration.nix
+	  mangowm.nixosModules.mango
+	];
       }; 
     };
     homeConfigurations = {
