@@ -121,25 +121,28 @@
 
   # List packages installed in system profile.
   environment.systemPackages = with pkgs; [
-  cmake
-  fastfetch
-  gcc
-  git
-  gnumake
-  guitarix
-  kitty
-  librewolf
-  neovim
-  nerd-fonts.hack
-  neural-amp-modeler-lv2
-  pkg-config
-  prismlauncher
-  proton-vpn
-  qjackctl
-  reaper
-  tor-browser
-  vim
-  wget
+   cmake
+   fastfetch
+   gcc
+   git
+   gnumake
+   guitarix
+   kitty
+   librewolf
+   neovim
+   nerd-fonts.hack
+   neural-amp-modeler-lv2
+   pkg-config
+   prismlauncher
+   protonup-qt
+   proton-vpn
+   qjackctl
+   reaper
+   tor-browser
+   vim
+   waybar
+   wget
+   wofi
   ];
 
   fonts.packages = with pkgs; [

@@ -20,6 +20,11 @@
       source = ./mango/config.conf;
       recursive = true;
     };
+
+    ".config/waybar" = {
+      source = ./waybar;
+      recursive = true;
+    };
   };
 
   xdg.configFile."kitty/kitty.conf".source = ./kitty/kitty.conf;
