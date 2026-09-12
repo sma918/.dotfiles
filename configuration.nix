@@ -32,6 +32,9 @@
   # Enable networking
   networking.networkmanager.enable = true;
 
+  # Enable Bluetooth
+  hardware.bluetooth.enable = true;
+
   # Set your time zone.
   time.timeZone = "America/Chicago";
 
@@ -49,6 +52,8 @@
     LC_TELEPHONE = "en_US.UTF-8";
     LC_TIME = "en_US.UTF-8";
   };
+
+  services.usbmuxd.enable = true;
 
   # ZSH
   environment.shells = with pkgs; [ zsh ];
@@ -127,7 +132,9 @@
    git
    gnumake
    guitarix
+   ifuse
    kitty
+   libimobiledevice
    librewolf
    neovim
    nerd-fonts.hack
@@ -138,6 +145,7 @@
    proton-vpn
    qjackctl
    reaper
+   rmpc
    tor-browser
    vim
    waybar
